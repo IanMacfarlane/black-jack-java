@@ -1,17 +1,10 @@
 public class Deck {
 
 	public Deck() {
-		String[] suits = { "Clubs", "Diamonds", "Hearts", "Spades" };
-		int[] values = { 11, 2, 3, 4, 5, 6, 7, 8, 9, 10, 10, 10, 10 };
-		String[] faces = { "Ace", "2", "3", "4", "5", "6", "7", "8", "9", "10", "Jack", "Queen", "King" };
-
-		for (int s = 0; s < 4; s++) {
-			for (int f = 0; f < 13; f++) {
-				insert(new Card(suits[s], values[f], faces[f]));
-			}
-		}
+		shuffle();	
 	}
 
+	//prints out every card in the deck from top to bottom and prints how many cards are in the deck
 	public void printDeck(){
 		Card temp = head;
 		int counter = 0;
@@ -23,22 +16,34 @@ public class Deck {
 		System.out.println("There are "+counter+" cards in this deck");
 	}
 	
-	//Choose a random card in the deck and swap it with the head of the deck. 100 times.
+	//Reinitialize the deck then shuffle by choosing a random card in the deck and swap it with the head of the deck 100 times.
 	public void shuffle(){
-		Card temp = new Card();
-		Card prev = new Card();
+
+		head = null;
+
+		String[] suits = { "Clubs", "Diamonds", "Hearts", "Spades" };
+		int[] values = { 11, 2, 3, 4, 5, 6, 7, 8, 9, 10, 10, 10, 10 };
+		String[] faces = { "Ace", "2", "3", "4", "5", "6", "7", "8", "9", "10", "Jack", "Queen", "King" };
+
+		for (int s = 0; s < 4; s++) {
+			for (int f = 0; f < 13; f++) {
+				insert(new Card(suits[s], values[f], faces[f]));
+			}
+		}
+
 		int card;
 		for (int i = 0; i < 100; i++) {
-			temp = head;
+			Card temp = head;
+			Card prev = new Card();
 			card = (int)(Math.random() * 52);
 			for (int j = 0; j < card; j++) {
 				prev = temp;
 				temp = temp.next;
 			}
 			prev.next = head;
-			prev = head.next;
+			Card other = head.next;
 			head.next = temp.next;
-			temp.next = prev;
+			temp.next = other;
 			head = temp;
 		}
 	}
