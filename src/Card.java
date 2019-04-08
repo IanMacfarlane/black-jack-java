@@ -17,6 +17,14 @@ public class Card {
 		return face + " of " + suit;
 	}
 
+	public int getValue() {
+		return value;
+	}
+
+	public void changeValue(int value) {
+		this.value = value;
+	}
+
 	private String suit;
 	private int value;
 	private String face;
