@@ -27,21 +27,21 @@ public class BlackJack {
 				}
 			}
 			else if (playerHand.getTotal() == 21) {
-				input = "stay";
+				input = "s";
 			}
 			else if (playerBust == false) {
 				do {
-				System.out.print("Would you like to (hit) or (stay): ");
+				System.out.print("Would you like to [h]it or [s]tay: ");
 				input = console.nextLine();
-				} while (!input.equals("hit") && !input.equals("stay"));	
+				} while (!input.equals("h") && !input.equals("s"));	
 
-				if (input.equals("hit")) {
+				if (input.equals("h")) {
 					playerHand.insert(deck.draw());
 				}
 			}
 
 
-		} while (!input.equals("stay") && !playerBust);
+		} while (!input.equals("s") && !playerBust);
 
 		boolean win = true;
 
